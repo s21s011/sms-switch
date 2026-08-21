@@ -8,7 +8,7 @@
  * token, so client-supplied androidId/userId can no longer be spoofed).
  */
 
-require_once __DIR__ . "/includes/device_auth.php";
+require_once __DIR__ . "/../includes/device_auth.php";
 
 try {
     $db = MysqliDb::getInstance();

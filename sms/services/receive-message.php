@@ -8,7 +8,7 @@
  * the auto-commands (stop/unsubscribe) can only affect the owner's own data.
  */
 
-require_once __DIR__ . "/includes/device_auth.php";
+require_once __DIR__ . "/../includes/device_auth.php";
 
 try {
     if (isset($_POST["messages"])) {
@@ -45,7 +45,7 @@ try {
                         $sentDate->setTimezone(new DateTimeZone(TIMEZONE));
                         $message->setSentDate($sentDate->format("Y-m-d H:i:s"));
                     }
-                    $receivedDate = new DateTime($msg["receivedDate"]);
+                    $receivedDate = new DateTime(isset($msg["receivedDate"]) ? $msg["receivedDate"] : "now");
                     $receivedDate->setTimezone(new DateTimeZone(TIMEZONE));
                     $message->setDeliveredDate($receivedDate->format("Y-m-d H:i:s"));
                     $message->setStatus("Received");

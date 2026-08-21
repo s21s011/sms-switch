@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/includes/device_auth.php";
+require_once __DIR__ . "/../includes/device_auth.php";
 
 try {
     if (isset($_POST["ussdId"]) && isset($_POST["response"])) {

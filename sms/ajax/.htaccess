@@ -1,15 +1,11 @@
-# Deny all direct access to this directory
-Require all denied
+# ajax/ endpoints MUST be web-executable (dashboard JS posts here).
+# Deny raw-file access and directory listings, but allow PHP execution.
 
-# Block access to any file
-<FilesMatch ".*">
+Options -Indexes
+
+# Never serve source/backup/raw copies
+<FilesMatch "\.(md|txt|log|ini|sql|bak|orig|dist|json|lock|yml|yaml)$">
     Require all denied
 </FilesMatch>
 
-# Disable PHP execution in this directory
-<IfModule mod_php.c>
-    php_flag engine off
-</IfModule>
-<IfModule mod_fcgid.c>
-    FcgidWrapper Off
-</IfModule>
+# Keep PHP execution ON (do NOT add php_flag engine off here)

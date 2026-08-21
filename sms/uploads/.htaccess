@@ -1,15 +1,6 @@
-# Deny all access to this directory
-Require all denied
-
-# Block access to any file
-<FilesMatch ".*">
+# uploads/ must serve attachment files but never execute scripts.
+Options -Indexes
+php_flag engine off
+<FilesMatch "\.(php|php3|php4|php5|php7|php8|phtml|phar|cgi|pl|py|sh|asp|aspx|jsp)$">
     Require all denied
 </FilesMatch>
-
-# Disable PHP execution in this directory
-<IfModule mod_php.c>
-    php_flag engine off
-</IfModule>
-<IfModule mod_fcgid.c>
-    FcgidWrapper Off
-</IfModule>

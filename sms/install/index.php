@@ -76,19 +76,19 @@ function runInstall(array $p): array
     if ($sql === false) {
         return ['Cannot read schema file.'];
     }
-    // Split on ; that is followed by newline (statement boundary) to be safe.
-    $statements = preg_split('/;\\s*\\n/', $sql);
+    // Strip comment lines FIRST (a `--` comment directly above a statement
+    // would otherwise be glued to it after splitting and cause the whole
+    // statement to be skipped as a "comment"), then split on statement-
+    // terminating semicolons at end of line.
+    $sql = preg_replace('/^\s*--.*$/m', '', $sql);
+    $statements = preg_split('/;\s*[\r\n]+/', $sql);
     foreach ($statements as $stmt) {
         $stmt = trim($stmt);
-        if ($stmt === '' || str_starts_with($stmt, '--') || str_starts_with($stmt, 'SET ')) {
-            // still execute SET statements
-            if (str_starts_with($stmt, 'SET ')) {
-                $mysqli->query($stmt);
-            }
+        if ($stmt === '') {
             continue;
         }
         if (!$mysqli->query($stmt)) {
-            $errs[] = 'SQL error: ' . $mysqli->error . ' — in: ' . substr($stmt, 0, 80);
+            $errs[] = 'SQL error: ' . $mysqli->error . ' — in: ' . substr(preg_replace('/\s+/', ' ', $stmt), 0, 80);
         }
     }
     if ($errs) {

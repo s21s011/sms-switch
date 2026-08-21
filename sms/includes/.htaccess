@@ -1,15 +1,7 @@
-# Deny all direct access to this directory
+# includes/ is included by PHP scripts — deny ALL direct web access.
 Require all denied
 
-# Block access to any file
-<FilesMatch ".*">
-    Require all denied
-</FilesMatch>
-
-# Disable PHP execution in this directory
+# Belt & braces: no PHP execution either
 <IfModule mod_php.c>
     php_flag engine off
-</IfModule>
-<IfModule mod_fcgid.c>
-    FcgidWrapper Off
 </IfModule>

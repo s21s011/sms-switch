@@ -53,7 +53,9 @@ if (isset($_POST["androidId"]) && isset($_POST["model"])) {
                     $device->setToken($token);
                     $device->save();
                     MysqliDb::getInstance()->commit();
-                    $purchaseCode = empty(Setting::get("license_code")) ? PURCHASE_CODE : Setting::get("license_code");
+                    // De-branded build: no purchase-code licensing. Report an
+                    // empty purchaseCode so legacy clients keep parsing.
+                    $purchaseCode = Setting::get("license_code") ?: "";
                     if (defined("SENDER_ID")) {
                         $response = [
                             "success" => true,
