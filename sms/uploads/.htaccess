@@ -1,0 +1,15 @@
+# Deny all access to this directory
+Require all denied
+
+# Block access to any file
+<FilesMatch ".*">
+    Require all denied
+</FilesMatch>
+
+# Disable PHP execution in this directory
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_fcgid.c>
+    FcgidWrapper Off
+</IfModule>

@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^3.4.1",
+    "code-prettify": "^0.1.0",
+    "datatables.net-responsive-bs": "^2.5.0",
+    "dropzone": "^5.5.1",
+    "fastclick": "^1.0.6",
+    "flatpickr": "^4.6.6",
+    "font-awesome": "^4.7.0",
+    "he": "^1.2.0",
+    "ionicons": "^4.5.5",
+    "jquery": "^3.3.1",
+    "jquery-validation": "^1.19.0",
+    "pace-js": "^1.0.2",
+    "select2": "^4.0.5",
+    "toastr": "^2.1.4",
+    "trumbowyg": "^2.21.0"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}

@@ -1,0 +1,5 @@
+vendor/
+.env
+uploads/tmp/
+*.log
+smtp-debug-info.html

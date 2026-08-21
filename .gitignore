@@ -1,0 +1,22 @@
+# Environment / secrets
+.env
+*.keystore
+release.keystore
+*.jks
+
+# Build outputs
+android/app/build/
+android/.gradle/
+android/build/
+android/local.properties
+android/.idea/
+android/capture/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Logs / temp
+*.log
+sms/tmp/*
+!sms/tmp/.gitkeep

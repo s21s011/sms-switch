@@ -1,0 +1,18 @@
+# Protect install directory after installation
+# This file is managed by the installer - it creates _lock file after success
+# But we also add this as defense-in-depth
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} _lock
+    RewriteRule ^ - [F,L]
+</IfModule>
+
+# Deny access to sensitive files in this directory
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+<FilesMatch "(README\.txt)$">
+    Require all denied
+</FilesMatch>

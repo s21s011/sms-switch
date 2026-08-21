@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SMS Switch</string>
+    <string name="hint_server">Server URL (https://…/sms/)</string>
+    <string name="hint_android_id">Android ID</string>
+    <string name="hint_user_id">User ID</string>
+    <string name="hint_password">Password</string>
+    <string name="add_device">Register Device</string>
+    <string name="start">Start Gateway</string>
+    <string name="stop">Stop Gateway</string>
+    <string name="devices">Registered devices (long-press to remove)</string>
+</resources>

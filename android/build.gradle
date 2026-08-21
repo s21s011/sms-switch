@@ -1,0 +1,24 @@
+// Top-level build file. Versions are pinned via the ext block so the
+// GitHub Actions CI build is reproducible.
+// Dependency (module) repositories are centralized in settings.gradle via
+// dependencyResolutionManagement (FAIL_ON_PROJECT_REPOS), so the old
+// `allprojects { repositories { ... } }` block was removed — it conflicted.
+// The buildscript classpath (AGP) is still declared here; buildscript
+// repositories are NOT governed by FAIL_ON_PROJECT_REPOS.
+buildscript {
+    ext {
+        agp_version = '8.5.2'
+        kotlin_version = '1.9.24'
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$agp_version"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
