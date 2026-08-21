@@ -42,7 +42,7 @@ jobs:
         run: ./gradlew assembleDebug --no-daemon
 
       - name: Build Release APK (signed, if keystore provided)
-        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
+        if: ${{ env.KEYSTORE_PRESENT == 'true' }}
         working-directory: android
         env:
           KS: ${{ secrets.KEYSTORE_BASE64 }}
@@ -50,6 +50,10 @@ jobs:
           KA: ${{ secrets.KEY_ALIAS }}
           KP: ${{ secrets.KEY_PASSWORD }}
         run: |
+          if [ -z "$KS" ]; then
+            echo "No KEYSTORE_BASE64 secret set — skipping release build."
+            exit 0
+          fi
           echo "$KS" | base64 -d > release.keystore
           ./gradlew assembleRelease \
             -Pandroid.injected.signing.store.file=release.keystore \
