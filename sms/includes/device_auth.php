@@ -71,7 +71,7 @@ if (isset($_POST["groupId"]) && $_POST["groupId"] !== "") {
     $grp = MysqliDb::getInstance()
         ->where("groupID", $_POST["groupId"])
         ->where("deviceID", $device->getID())
-        ->getValue("messages", "COUNT(*)");
+        ->getValue("Message", "COUNT(*)");
     if (!$grp) {
         deviceAuthFail(__("error_device_unauthorized"));
     }

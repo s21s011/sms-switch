@@ -1,6 +1,7 @@
 package com.grandsms.smsgateway.api;
 
 import com.grandsms.smsgateway.model.DeviceRegistration;
+import com.grandsms.smsgateway.model.GetCampaignsResponse;
 import com.grandsms.smsgateway.model.GetMessagesResponse;
 import com.grandsms.smsgateway.model.StatusReport;
 
@@ -14,6 +15,15 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface GatewayApi {
+
+    @FormUrlEncoded
+    @POST("services/get-campaigns.php")
+    Call<GetCampaignsResponse> getCampaigns(
+            @Header("X-Device-Token") String token,
+            @Field("token") String tokenBody,
+            @Field("androidId") String androidId,
+            @Field("userId") String userId,
+            @Field("versionCode") String versionCode);
 
     @FormUrlEncoded
     @POST("services/get-messages.php")

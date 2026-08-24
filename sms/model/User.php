@@ -188,7 +188,7 @@ class User extends Entity
     /**
      * @return string
      */
-    public function getDelay(): string
+    public function getDelay(): ?string
     {
         return $this->delay;
     }
@@ -206,9 +206,9 @@ class User extends Entity
     /**
      * @return int
      */
-    public function getUssdDelay(): int
+    public function getUssdDelay(): ?int
     {
-        return $this->ussdDelay;
+        return $this->ussdDelay === null ? null : (int) $this->ussdDelay;
     }
 
     /**
@@ -327,7 +327,7 @@ class User extends Entity
     /**
      * @return string
      */
-    public function getTimeZone(): string
+    public function getTimeZone(): ?string
     {
         return $this->timeZone;
     }
